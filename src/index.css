@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+.ProseMirror {
+  height: 150px;
+  padding: 8px;
+}
+
+.top-modal {
+  animation: slideInTop 0.3s ease-out;
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Ensure modal stays on top of navbar */
+.ant-modal-wrap {
+  z-index: 1001;
+}
+
+.card-transition {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-transition:hover {
+  transform: translateY(-2px);
+}
