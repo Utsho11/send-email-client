@@ -14,7 +14,8 @@ import {
   Mailbox,
   MailOpen,
   MailWarning,
-  MailMinus,
+  MailCheck,
+  Loader2,
 } from "lucide-react";
 import { fetchData } from "../utils/fetchData";
 import {
@@ -55,11 +56,13 @@ const Profile = () => {
   const { user } = useAuth();
   const currentUser = user.providerData[0];
   const [loading, setLoading] = useState(false);
+  const [emailStatloading, setEmailStatLoading] = useState(false);
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState([false, false]);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { styles } = useStyle();
+  const [emailStats, setEmailStats] = useState();
 
   const classNames = {
     body: styles["my-modal-body"],
@@ -134,6 +137,40 @@ const Profile = () => {
     loadStats();
   }, []);
 
+  useEffect(() => {
+    const loadEmailStats = async () => {
+      setEmailStatLoading(true);
+      try {
+        const { data } = await fetchData(
+          "https://send-email-server-wdia.onrender.com/email-stats"
+        );
+
+        console.log(data);
+
+        setEmailStats(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setEmailStatLoading(false);
+      }
+    };
+    loadEmailStats();
+  }, []);
+
+  let totals;
+
+  if (emailStats) {
+    totals = emailStats.reduce(
+      (acc, campaign) => {
+        acc.sent += campaign.stats.sent;
+        acc.opened += campaign.stats.opened;
+        acc.spammed += campaign.stats.spammed;
+        acc.unread += campaign.stats.unread;
+        return acc;
+      },
+      { sent: 0, opened: 0, spammed: 0, unread: 0 } // Initial values
+    );
+  }
   const handleSave = async (values) => {
     try {
       const response = await axios.post(
@@ -431,63 +468,71 @@ const Profile = () => {
               <Mailbox className="text-indigo-600 w-5 h-5" />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {/* Open Status */}
-              <div className="flex items-center p-4 bg-emerald-50 rounded-lg transition-all hover:bg-emerald-100">
-                <div className="flex-shrink-0 p-3 bg-emerald-600 rounded-lg">
-                  <MailOpen className="w-6 h-6 text-white" />
-                </div>
-                <div className="ml-4">
-                  <div className="text-2xl font-semibold text-gray-800">
-                    200
+            {emailStatloading ? (
+              <Loader2 />
+            ) : (
+              <div className="grid grid-cols-2 gap-4">
+                {/* Open Status */}
+                <div className="flex items-center p-4 bg-emerald-50 rounded-lg transition-all hover:bg-emerald-100">
+                  <div className="flex-shrink-0 p-3 bg-emerald-600 rounded-lg">
+                    <MailOpen className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-sm font-medium text-emerald-600">
-                    Opened
+                  <div className="ml-4">
+                    <div className="text-2xl font-semibold text-gray-800">
+                      {totals?.opened}
+                    </div>
+                    <div className="text-sm font-medium text-emerald-600">
+                      Opened
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Spam Status */}
-              <div className="flex items-center p-4 bg-rose-50 rounded-lg transition-all hover:bg-rose-100">
-                <div className="flex-shrink-0 p-3 bg-rose-600 rounded-lg">
-                  <MailWarning className="w-6 h-6 text-white" />
-                </div>
-                <div className="ml-4">
-                  <div className="text-2xl font-semibold text-gray-800">
-                    100
+                {/* Spam Status */}
+                <div className="flex items-center p-4 bg-rose-50 rounded-lg transition-all hover:bg-rose-100">
+                  <div className="flex-shrink-0 p-3 bg-rose-600 rounded-lg">
+                    <MailWarning className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-sm font-medium text-rose-600">
-                    Marked as Spam
+                  <div className="ml-4">
+                    <div className="text-2xl font-semibold text-gray-800">
+                      {totals?.spammed}
+                    </div>
+                    <div className="text-sm font-medium text-rose-600">
+                      Marked as Spam
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Bounced Status */}
-              <div className="flex items-center p-4 bg-amber-50 rounded-lg transition-all hover:bg-amber-100">
-                <div className="flex-shrink-0 p-3 bg-amber-600 rounded-lg">
-                  <MailMinus className="w-6 h-6 text-white" />
-                </div>
-                <div className="ml-4">
-                  <div className="text-2xl font-semibold text-gray-800">30</div>
-                  <div className="text-sm font-medium text-amber-600">
-                    Bounced
+                {/* Bounced Status */}
+                <div className="flex items-center p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
+                  <div className="flex-shrink-0 p-3 bg-blue-600 rounded-lg">
+                    <MailCheck className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <div className="text-2xl font-semibold text-gray-800">
+                      {totals?.sent}
+                    </div>
+                    <div className="text-sm font-medium text-blue-600">
+                      Sent
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Unread Status */}
-              <div className="flex items-center p-4 bg-blue-50 rounded-lg transition-all hover:bg-blue-100">
-                <div className="flex-shrink-0 p-3 bg-blue-600 rounded-lg">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div className="ml-4">
-                  <div className="text-2xl font-semibold text-gray-800">76</div>
-                  <div className="text-sm font-medium text-blue-600">
-                    Unread
+                {/* Unread Status */}
+                <div className="flex items-center p-4 bg-amber-50 rounded-lg transition-all hover:bg-amber-100">
+                  <div className="flex-shrink-0 p-3 bg-amber-600 rounded-lg">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="ml-4">
+                    <div className="text-2xl font-semibold text-gray-800">
+                      {totals?.unread < 0 ? "0" : totals?.unread}
+                    </div>
+                    <div className="text-sm font-medium text-amber-600">
+                      Unread
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 

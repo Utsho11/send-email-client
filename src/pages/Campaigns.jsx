@@ -147,7 +147,7 @@ const Campaigns = () => {
         >
           Delete Selected
         </Button>
-        <NavLink to="/dashboard/choose-campaign">
+        <NavLink to="/dashboard/select-campaign">
           <Button type="primary">Create Campaign</Button>
         </NavLink>
       </div>
