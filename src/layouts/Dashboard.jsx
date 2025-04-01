@@ -86,15 +86,7 @@ const items = [
     children: [
       {
         key: "9",
-        label: <NavLink to="#">All Reports</NavLink>,
-      },
-      {
-        key: "10",
-        label: <NavLink to="#">Campaign-Based Report</NavLink>,
-      },
-      {
-        key: "11",
-        label: <NavLink to="#">List-Based Report</NavLink>,
+        label: <NavLink to="/dashboard/all-reports">All Reports</NavLink>,
       },
     ],
   },

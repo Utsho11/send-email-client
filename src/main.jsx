@@ -26,6 +26,7 @@ import EmailTextEditor from "./components/editor/EmailTextEditor.jsx";
 import TemplatePreview from "./components/module/TemplatePreview.jsx";
 import EmailTemplateEditor from "./components/editor/EmailTemplateEditor.jsx";
 import AIEmailCampaign from "./components/module/AIEmailCampaign.jsx";
+import AllReports from "./pages/AllReports.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -67,6 +68,7 @@ createRoot(document.getElementById("root")).render(
                 />
                 <Route path="calendar" element={<HolidayCalendar />} />
                 <Route path="all-investors" element={<AllInvestors />} />
+                <Route path="all-reports" element={<AllReports />} />
 
                 <Route path="template-options" element={<TemplatePreview />} />
               </Route>

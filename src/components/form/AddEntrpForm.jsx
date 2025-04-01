@@ -59,7 +59,7 @@ const MultiStepEntrepreneurForm = () => {
             <div className="text-center space-y-6 max-w-md">
               <div className="w-full h-64 bg-blue-50 rounded-xl mb-6 flex items-center justify-center">
                 <span className="text-gray-400 text-lg">
-                  <img src="/Process-amico.png" alt="" />
+                  <img src="/form.jpg" alt="" />
                 </span>
               </div>
               <h2 className="text-3xl font-bold text-gray-800">
