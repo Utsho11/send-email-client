@@ -25,6 +25,7 @@ import store from "./store/store.js";
 import EmailTextEditor from "./components/editor/EmailTextEditor.jsx";
 import TemplatePreview from "./components/module/TemplatePreview.jsx";
 import EmailTemplateEditor from "./components/editor/EmailTemplateEditor.jsx";
+import AIEmailCampaign from "./components/module/AIEmailCampaign.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -54,6 +55,10 @@ createRoot(document.getElementById("root")).render(
                 <Route path="allCampaign" element={<Campaigns />} />
                 <Route path="select-campaign" element={<SelectCampaign />} />
                 <Route path=":campaignId/email-form" element={<MailPage />} />
+                <Route
+                  path=":campaignId/ai-email-campaign"
+                  element={<AIEmailCampaign />}
+                />
 
                 {/* <Route path="pre-designed-email" element={<SelectCampaign />} /> */}
                 <Route

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import { fetchData } from "../utils/fetchData";
 import axios from "axios";
+import moment from "moment/moment";
 
 const Campaigns = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Campaigns = () => {
         "https://send-email-server-wdia.onrender.com/campaign"
       );
 
-      console.log(result);
+      // console.log(result);
 
       if (result.error) {
         console.error("Error fetching campaigns:", result.error);
@@ -28,6 +29,7 @@ const Campaigns = () => {
           key: campaign.id, // Assuming API returns 'id'
           campaignName: campaign.campaignName,
           topic: campaign.topic,
+          createdAt: campaign.createdAt,
         }));
         setCampaigns(formattedCampaigns);
       }
@@ -100,6 +102,22 @@ const Campaigns = () => {
       title: "Campaign Topic",
       dataIndex: "topic",
       key: "topic",
+    },
+    {
+      title: "Created At",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (timestamp) => {
+        // console.log(timestamp);
+
+        if (timestamp && timestamp._seconds) {
+          const date = moment
+            .unix(timestamp._seconds)
+            .add(timestamp._nanoseconds / 1000000, "milliseconds");
+          return date.format("MMMM Do YYYY, h:mm:ss a");
+        }
+        return <span className="text-gray-500">N/A</span>;
+      },
     },
   ];
 

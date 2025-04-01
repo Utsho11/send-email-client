@@ -69,7 +69,7 @@ const SelectCampaign = () => {
       type,
     };
 
-    console.log({ payload });
+    // console.log({ payload });
 
     try {
       const response = await axios.post(
@@ -86,13 +86,16 @@ const SelectCampaign = () => {
 
       toggleModal(false); // Close modal
 
+      // console.log(response.data);
+
       Swal.fire({
         title: "Campaign Created Successfully",
         icon: "success",
         confirmButtonText: "Close",
       });
-
-      navigate(`/dashboard/${campaignId}/email-form`);
+      payload.type === "ai"
+        ? navigate(`/dashboard/${campaignId}/ai-email-campaign`)
+        : navigate(`/dashboard/${campaignId}/email-form`);
     } catch (error) {
       console.error(
         "Error creating campaign:",

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Button } from "antd";
 import { useNavigate, useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setContent } from "../../store/store";
 
 const EmailTextEditor = () => {
@@ -11,6 +11,7 @@ const EmailTextEditor = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { campaignId } = useParams();
+  const { content } = useSelector((state) => state.campaign);
 
   const handleContent = () => {
     if (editorRef.current) {
@@ -30,7 +31,11 @@ const EmailTextEditor = () => {
       <Editor
         apiKey={tinymceApi} // Your free API key
         onInit={(_evt, editor) => (editorRef.current = editor)}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        initialValue={
+          content
+            ? content.html
+            : "<p>This is the initial content of the editor.</p>"
+        }
         init={{
           height: "80vh",
           menubar: "file edit view insert format tools table help", // Enable the menubar with custom menus

@@ -32,7 +32,10 @@ const campaignSlice = createSlice({
     setCampaignId(state, action) {
       state.campaignId = action.payload;
     },
-    resetCampaign: () => initialState, // Reset the state in a cleaner way
+    setSubject(state, action) {
+      state.subject = action.payload;
+    },
+    resetCampaign: () => initialState,
   },
 });
 
@@ -41,6 +44,7 @@ export const {
   setContent,
   setTemplateId,
   setCampaignId,
+  setSubject,
   resetCampaign,
 } = campaignSlice.actions;
 

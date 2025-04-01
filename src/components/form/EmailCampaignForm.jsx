@@ -10,6 +10,7 @@ import SenderModal from "../modal/SenderModal";
 import RecipientsModal from "../modal/RecipientsModal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { EditOutlined } from "@ant-design/icons";
 
 const EmailCampaignForm = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const EmailCampaignForm = () => {
   };
 
   const closeModal = () => {
-    console.log("Closing modal");
+    // console.log("Closing modal");
     setModalField(null);
     setModalVisible(false);
     setSearchTerm("");
@@ -63,7 +64,7 @@ const EmailCampaignForm = () => {
     };
 
     loadCampaigns();
-  }, [campaignId]);
+  }, [type, campaignId]);
 
   // console.log(type);
 
@@ -76,7 +77,7 @@ const EmailCampaignForm = () => {
         console.error("Failed to fetch clients:", result.error);
         message.error("Failed to load clients");
       } else {
-        console.log("Clients fetched:", result.data);
+        // console.log("Clients fetched:", result.data);
         setClients(result.data || []);
       }
     };
@@ -165,6 +166,8 @@ const EmailCampaignForm = () => {
   };
 
   const handleCreateContent = () => {
+    console.log(type);
+
     if (type === "regular" || type === "ai" || type === "followUp") {
       navigate(`/${campaignId}/text-editor`);
     } else {
@@ -176,7 +179,7 @@ const EmailCampaignForm = () => {
     client.email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log(recipients);
+  // console.log(recipients);
 
   return (
     <div
@@ -321,6 +324,17 @@ const EmailCampaignForm = () => {
                   className="w-full min-h-[400px] border-none"
                   sandbox="allow-same-origin"
                 />
+                <div className="m-4 text-end">
+                  <Button
+                    type="default"
+                    variant="outlined"
+                    color="blue"
+                    onClick={handleCreateContent}
+                    icon={<EditOutlined size={16} />}
+                  >
+                    Edit Content
+                  </Button>
+                </div>
               </div>
             ) : (
               <div className="w-full min-h-[400px] border border-gray-300 rounded-md bg-white flex flex-col items-center justify-center space-y-5 cursor-pointer">
