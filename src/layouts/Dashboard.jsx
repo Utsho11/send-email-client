@@ -101,7 +101,7 @@ const items = [
 ];
 
 const Dashboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const { user, logout } = useAuth();
 

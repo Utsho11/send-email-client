@@ -14,10 +14,10 @@ const EmailTextEditor = () => {
 
   const handleContent = () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent());
+      // console.log(editorRef.current.getContent());
 
       const html = editorRef.current.getContent();
-      console.log(html);
+      // console.log(html);
       dispatch(setContent({ html }));
       navigate(`/dashboard/${campaignId}/email-form`);
     }

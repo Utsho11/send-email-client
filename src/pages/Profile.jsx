@@ -145,7 +145,7 @@ const Profile = () => {
           "https://send-email-server-wdia.onrender.com/email-stats"
         );
 
-        console.log(data);
+        // console.log(data);
 
         setEmailStats(data.data);
       } catch (err) {
@@ -231,25 +231,32 @@ const Profile = () => {
                 Here&apos;s your business overview
               </p>
             </div>
-            <div className="mt-4 md:mt-0 flex items-center space-x-3">
-              <div className="">
+            <div className="mt-4 md:mt-0 flex flex-col-reverse sm:flex-col md:flex-row gap-3 md:items-center md:space-x-3">
+              <div>
                 <Button
                   variant="solid"
                   color="primary"
                   icon={<Plus size={16} />}
                   onClick={() => setIsOpen(true)}
+                  className="w-full sm:w-auto"
                 >
                   Create
                 </Button>
               </div>
-              <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center">
-                <span className="font-medium">
-                  {currentUser.displayName[0]}
-                </span>
-              </div>
-              <div>
-                <p className="font-medium">{currentUser.email}</p>
-                <p className="text-sm opacity-75">Last login: 2h ago</p>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-indigo-500 flex items-center justify-center">
+                  <span className="font-medium text-sm text-wrap sm:text-base">
+                    {currentUser.displayName[0]}
+                  </span>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-medium text-sm sm:text-base">
+                    {currentUser.email}
+                  </p>
+                  <p className="text-xs sm:text-sm opacity-75">
+                    Last login: 2h ago
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -412,7 +419,7 @@ const Profile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Performance Chart */}
           <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-gray-800">
                 Performance Overview
               </h2>
@@ -471,7 +478,7 @@ const Profile = () => {
             {emailStatloading ? (
               <Loader2 />
             ) : (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Open Status */}
                 <div className="flex items-center p-4 bg-emerald-50 rounded-lg transition-all hover:bg-emerald-100">
                   <div className="flex-shrink-0 p-3 bg-emerald-600 rounded-lg">

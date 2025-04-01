@@ -9,12 +9,12 @@ function App() {
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        console.log({ token });
+        GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential?.accessToken;
+        // console.log({ token });
 
-        const user = result.user;
-        console.log({ user });
+        // const user = result.user;
+        // console.log({ user });
 
         navigate("/dashboard");
       })

@@ -148,7 +148,7 @@ const ListDropdown = () => {
   ];
 
   return (
-    <div className="text-white space-x-3">
+    <div className="hidden md:flex text-white space-x-3">
       <Dropdown
         menu={{
           items: item2,

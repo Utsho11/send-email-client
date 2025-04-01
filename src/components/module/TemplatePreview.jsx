@@ -212,7 +212,7 @@ const TemplatePreview = ({ toggleModal }) => {
       <h2 className="text-2xl font-semibold mb-4">
         You might like these email templates:
       </h2>
-      <div className="grid grid-cols-3 gap-4 h-[500px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[500px]">
         {templates.map((template) => (
           <Card
             key={template.id}

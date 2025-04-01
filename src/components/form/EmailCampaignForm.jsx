@@ -121,7 +121,7 @@ const EmailCampaignForm = () => {
       return;
     }
 
-    console.log("Saving value:", value, "for field:", modalField);
+    // console.log("Saving value:", value, "for field:", modalField);
     dispatch(updateField({ field: modalField, value }));
     closeModal();
   };
