@@ -191,44 +191,41 @@ const EmailCampaignForm = () => {
         justifyContent: "center",
       }}
     >
-      <Card
-        style={{
-          maxWidth: "1080px",
-          width: "100%",
-          borderRadius: "12px",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          padding: "24px",
-        }}
-      >
-        <div className="grid grid-cols-12 border-b border-b-gray-200 py-4 mb-4">
-          <div className="col-span-3 font-semibold text-lg text-gray-400">
+      <Card className="w-full max-w-[1080px] rounded-xl shadow-lg p-6 mx-auto">
+        {/* Subject Section */}
+        <div className="grid grid-cols-12 border-b border-gray-200 py-4 mb-4 gap-4">
+          <div className="col-span-12 sm:col-span-3 font-semibold text-lg text-gray-400">
             SUBJECT
           </div>
-          {subject && <div className="col-span-3">{subject}</div>}
+          {subject && (
+            <div className="col-span-12 sm:col-span-3">{subject}</div>
+          )}
           <div
-            className={`${
-              subject ? "col-span-6 space-y-5 flex justify-end" : "col-span-9"
+            className={`col-span-12 ${
+              subject ? "sm:col-span-6 flex justify-end" : "sm:col-span-9"
             }`}
           >
             {subject ? (
-              <>
-                <Button
-                  variant="outlined"
-                  color="blue"
-                  icon={<Edit size={16} />}
-                  onClick={() => openModal("subject")}
-                >
-                  Edit Subject
-                </Button>
-              </>
+              <Button
+                variant="outlined"
+                color="blue"
+                icon={<Edit size={16} />}
+                onClick={() => openModal("subject")}
+                className="w-full sm:w-auto"
+              >
+                Edit Subject
+              </Button>
             ) : (
-              <div className="">
-                <h3>Give a suitable subject line to this campaign.</h3>
+              <div className="space-y-2">
+                <h3 className="text-sm sm:text-base">
+                  Give a suitable subject line to this campaign.
+                </h3>
                 <Button
                   type="default"
                   variant="outlined"
                   color="blue"
                   onClick={() => openModal("subject")}
+                  className="w-full sm:w-auto"
                 >
                   ADD SUBJECT
                 </Button>
@@ -237,35 +234,37 @@ const EmailCampaignForm = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 border-b border-b-gray-200 py-4 mb-4">
-          <div className="col-span-3 font-semibold text-lg text-gray-400">
+        {/* Sender Section */}
+        <div className="grid grid-cols-12 border-b border-gray-200 py-4 mb-4 gap-4">
+          <div className="col-span-12 sm:col-span-3 font-semibold text-lg text-gray-400">
             SENDER
           </div>
-          {sender && <div className="col-span-3">{sender}</div>}
-
+          {sender && <div className="col-span-12 sm:col-span-3">{sender}</div>}
           <div
-            className={`${
-              sender ? "col-span-6 space-y-5 flex justify-end" : "col-span-9"
+            className={`col-span-12 ${
+              sender ? "sm:col-span-6 flex justify-end" : "sm:col-span-9"
             }`}
           >
             {sender ? (
-              <>
-                <Button
-                  variant="outlined"
-                  color="blue"
-                  icon={<Edit size={16} />}
-                  onClick={() => openModal("sender")}
-                >
-                  Edit Sender
-                </Button>
-              </>
+              <Button
+                variant="outlined"
+                color="blue"
+                icon={<Edit size={16} />}
+                onClick={() => openModal("sender")}
+                className="w-full sm:w-auto"
+              >
+                Edit Sender
+              </Button>
             ) : (
-              <div className="">
-                <h3>Who is sending this email campaign?</h3>
+              <div className="space-y-2">
+                <h3 className="text-sm sm:text-base">
+                  Who is sending this email campaign?
+                </h3>
                 <Button
                   type="primary"
                   onClick={() => openModal("sender")}
                   icon={<PlusCircle size={16} />}
+                  className="w-full sm:w-auto"
                 >
                   ADD SENDER
                 </Button>
@@ -274,39 +273,42 @@ const EmailCampaignForm = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 border-b border-b-gray-200 py-4 mb-4">
-          <div className="col-span-3 font-semibold text-lg text-gray-400">
+        {/* Recipients Section */}
+        <div className="grid grid-cols-12 border-b border-gray-200 py-4 mb-4 gap-4">
+          <div className="col-span-12 sm:col-span-3 font-semibold text-lg text-gray-400">
             RECIPIENTS
           </div>
           {recipients && (
-            <div className="col-span-9">
+            <div className="col-span-12 sm:col-span-9">
               {recipients.length > 0 ? (
-                <div className="flex justify-between">
-                  <div className="">
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
                     {contactLists
                       .filter((contact) => recipients.includes(contact.id))
                       .map((contact) => (
                         <Tag key={contact.id}>{contact.listName}</Tag>
                       ))}
                   </div>
-                  <div className="col-end-6">
-                    <Button
-                      variant="outlined"
-                      color="blue"
-                      icon={<Edit size={16} />}
-                      onClick={() => openModal("recipients")}
-                    >
-                      Edit Recipients
-                    </Button>
-                  </div>
+                  <Button
+                    variant="outlined"
+                    color="blue"
+                    icon={<Edit size={16} />}
+                    onClick={() => openModal("recipients")}
+                    className="w-full sm:w-auto"
+                  >
+                    Edit Recipients
+                  </Button>
                 </div>
               ) : (
-                <div className="">
-                  <h3>Select recipients from your created contact list.</h3>
+                <div className="space-y-2">
+                  <h3 className="text-sm sm:text-base">
+                    Select recipients from your created contact list.
+                  </h3>
                   <Button
                     type="primary"
                     onClick={() => openModal("recipients")}
                     icon={<PlusCircle size={16} />}
+                    className="w-full sm:w-auto"
                   >
                     ADD RECIPIENTS
                   </Button>
@@ -316,11 +318,12 @@ const EmailCampaignForm = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-12 border-b border-gray-200 py-4 mb-4">
-          <div className="col-span-3">
+        {/* Content Section */}
+        <div className="grid grid-cols-12 border-b border-gray-200 py-4 mb-4 gap-4">
+          <div className="col-span-12 sm:col-span-3">
             <h3 className="font-semibold text-lg text-gray-400">CONTENT</h3>
           </div>
-          <div className="col-span-9 w-full">
+          <div className="col-span-12 sm:col-span-9 w-full">
             {content?.html ? (
               <div className="w-full min-h-[400px] border border-gray-300 rounded-md bg-white overflow-hidden">
                 <iframe
@@ -336,23 +339,27 @@ const EmailCampaignForm = () => {
                     color="blue"
                     onClick={handleCreateContent}
                     icon={<EditOutlined size={16} />}
+                    className="w-full sm:w-auto"
                   >
                     Edit Content
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className="w-full min-h-[400px] border border-gray-300 rounded-md bg-white flex flex-col items-center justify-center space-y-5 cursor-pointer">
+              <div className="w-full min-h-[200px] sm:min-h-[400px] border border-gray-300 rounded-md bg-white flex flex-col items-center justify-center space-y-5 cursor-pointer">
                 <img
                   src="/Create content.png"
                   alt="content"
-                  className="w-[130px]"
+                  className="w-[100px] sm:w-[130px]"
                 />
-                <h4>Create the content of your campaign.</h4>
+                <h4 className="text-sm sm:text-base">
+                  Create the content of your campaign.
+                </h4>
                 <Button
                   type="primary"
                   onClick={handleCreateContent}
                   icon={<PlusCircle size={16} />}
+                  className="w-full sm:w-auto"
                 >
                   Create Content
                 </Button>
@@ -361,21 +368,10 @@ const EmailCampaignForm = () => {
           </div>
         </div>
 
-        {/* <Button
-          type="primary"
-          onClick={handleSendEmail}
-          style={{
-            marginTop: "16px",
-            width: "100%",
-            backgroundColor: "#52c41a",
-            borderColor: "#52c41a",
-          }}
-        >
-          Send Email
-        </Button> */}
+        {/* Send Button */}
         <div className="flex justify-end">
           <button
-            className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none"
+            className="relative inline-flex h-12 active:scale-95 transition overflow-hidden rounded-lg p-[1px] focus:outline-none w-full sm:w-auto"
             onClick={handleSendEmail}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"></span>

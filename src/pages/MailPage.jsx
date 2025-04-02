@@ -13,7 +13,7 @@ const MailPage = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="text-lg m-8 flex justify-between items-center">
+      <div className="text-sm md:text-lg m-8 flex justify-between items-center">
         <NavLink
           to="/dashboard/allCampaign"
           className="flex items-center gap-2 hover:text-blue-500"
