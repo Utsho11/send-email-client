@@ -43,9 +43,6 @@ const SenderModal = ({
       onCancel={onCancel}
       okText="Save"
       cancelText="Cancel"
-      okButtonProps={{
-        style: { backgroundColor: "#ff4d4f", borderColor: "#ff4d4f" },
-      }}
       cancelButtonProps={{
         style: { borderColor: "#ff4d4f", color: "#ff4d4f" },
       }}
@@ -54,6 +51,7 @@ const SenderModal = ({
       <div>
         <Input
           placeholder="Search or enter sender email"
+          variant="underlined"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{ marginBottom: "16px" }}

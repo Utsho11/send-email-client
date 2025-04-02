@@ -1,4 +1,4 @@
-import { Form, Input, Select, Button, Modal } from "antd";
+import { Form, Input, Button, Modal } from "antd";
 import { useState } from "react";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router"; // Corrected import
@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { Mail, Bot, RefreshCw } from "lucide-react";
 import { setCampaignId } from "../store/store";
-
-const { Option } = Select;
 
 const SelectCampaign = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -167,26 +165,10 @@ const SelectCampaign = () => {
             className="mb-4"
           >
             <Input
+              variant="underlined"
               placeholder="Enter campaign name"
               className="w-full border-gray-300 rounded-md focus:border-gray-400 focus:ring-0"
             />
-          </Form.Item>
-
-          <Form.Item
-            name="topic"
-            label="Assign Topic *"
-            rules={[{ required: true, message: "Please select a topic!" }]}
-            className="mb-4"
-          >
-            <Select
-              placeholder="Select a topic"
-              className="w-full border-gray-300 rounded-md"
-            >
-              <Option value="marketing">Marketing</Option>
-              <Option value="sales">Sales</Option>
-              <Option value="product">Product</Option>
-              <Option value="events">Events</Option>
-            </Select>
           </Form.Item>
 
           <div className="mb-6 text-blue-500 flex items-center gap-1">

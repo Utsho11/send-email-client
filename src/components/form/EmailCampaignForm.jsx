@@ -224,7 +224,12 @@ const EmailCampaignForm = () => {
             ) : (
               <div className="">
                 <h3>Give a suitable subject line to this campaign.</h3>
-                <Button type="primary" onClick={() => openModal("subject")}>
+                <Button
+                  type="default"
+                  variant="outlined"
+                  color="blue"
+                  onClick={() => openModal("subject")}
+                >
                   ADD SUBJECT
                 </Button>
               </div>

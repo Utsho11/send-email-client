@@ -15,7 +15,6 @@ import {
   MailOpen,
   MailWarning,
   MailCheck,
-  Loader2,
 } from "lucide-react";
 import { fetchData } from "../utils/fetchData";
 import {
@@ -27,7 +26,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, Modal, Spin } from "antd";
 import { NavLink, useNavigate } from "react-router";
 import DemoBanner from "../components/card/DemoBanner";
 import Swal from "sweetalert2";
@@ -211,10 +210,11 @@ const Profile = () => {
 
   if (loading)
     return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="animate-pulse text-gray-500">Loading dashboard...</div>
-      </div>
+      <Spin tip="Loading" size="large">
+        Dashboard Loading...
+      </Spin>
     );
+
   if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
   return (
@@ -476,7 +476,7 @@ const Profile = () => {
             </div>
 
             {emailStatloading ? (
-              <Loader2 />
+              <Spin tip="Loading" size="small" />
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Open Status */}

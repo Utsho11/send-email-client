@@ -1,4 +1,4 @@
-import { Form, Input, Select, Button, Modal } from "antd";
+import { Form, Input, Button, Modal } from "antd";
 import { Mail, LayoutTemplate } from "lucide-react";
 import { useState } from "react";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -8,8 +8,6 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { setCampaignId } from "../../store/store";
 import TemplatePreview from "../module/TemplatePreview";
-
-const { Option } = Select;
 
 const EmailTemplateOptions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -154,25 +152,9 @@ const EmailTemplateOptions = () => {
           >
             <Input
               placeholder="Enter campaign name"
+              variant="underlined"
               className="w-full border-gray-300 rounded-md focus:border-gray-400 focus:ring-0"
             />
-          </Form.Item>
-
-          <Form.Item
-            name="topic"
-            label="Assign Topic *"
-            rules={[{ required: true, message: "Please select a topic!" }]}
-            className="mb-4"
-          >
-            <Select
-              placeholder="Select a topic"
-              className="w-full border-gray-300 rounded-md"
-            >
-              <Option value="marketing">Marketing</Option>
-              <Option value="sales">Sales</Option>
-              <Option value="product">Product</Option>
-              <Option value="events">Events</Option>
-            </Select>
           </Form.Item>
 
           <div className="mb-6 text-blue-500 flex items-center gap-1">
