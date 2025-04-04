@@ -120,7 +120,7 @@ const Profile = () => {
     const loadStats = async () => {
       try {
         const { data } = await fetchData(
-          "https://email-sender-server-gamma.vercel.app/stats"
+          "https://email-sender-server-rho.vercel.app/stats"
         );
         setStats({
           ...data,
@@ -141,7 +141,7 @@ const Profile = () => {
       setEmailStatLoading(true);
       try {
         const { data } = await fetchData(
-          "https://email-sender-server-gamma.vercel.app/email-stats"
+          "https://email-sender-server-rho.vercel.app/email-stats"
         );
 
         // console.log(data);
@@ -173,7 +173,7 @@ const Profile = () => {
   const handleSave = async (values) => {
     try {
       const response = await axios.post(
-        "https://email-sender-server-gamma.vercel.app/contact-lists",
+        "https://email-sender-server-rho.vercel.app/contact-lists",
         {
           listName: values.listName, // Changed to match Form.Item name
         }

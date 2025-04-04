@@ -16,7 +16,7 @@ const AllReports = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://email-sender-server-gamma.vercel.app/email-stats"
+          "https://email-sender-server-rho.vercel.app/email-stats"
         );
         if (response.data.message === "No email campaigns found") {
           message.info("No email campaigns found");
@@ -40,7 +40,7 @@ const AllReports = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://email-sender-server-gamma.vercel.app/email-stats/${campaignId}`
+        `https://email-sender-server-rho.vercel.app/email-stats/${campaignId}`
       );
       if (response.status === 200) {
         setSelectedCampaign(response.data);

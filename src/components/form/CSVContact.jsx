@@ -42,7 +42,7 @@ const CSVContact = () => {
       setTimeout(() => setCurrentStep(1), 1000); // Simulate uploading
 
       await axios.post(
-        "https://email-sender-server-gamma.vercel.app/upload-csv",
+        "https://email-sender-server-rho.vercel.app/upload-csv",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

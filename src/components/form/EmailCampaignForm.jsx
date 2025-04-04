@@ -52,7 +52,7 @@ const EmailCampaignForm = () => {
       if (!campaignId) return;
 
       const result = await fetchData(
-        `https://email-sender-server-gamma.vercel.app/campaign/${campaignId}`
+        `https://email-sender-server-rho.vercel.app/campaign/${campaignId}`
       );
       if (result.error) {
         console.error("Failed to fetch campaigns:", result.error);
@@ -71,7 +71,7 @@ const EmailCampaignForm = () => {
   useEffect(() => {
     const loadClients = async () => {
       const result = await fetchData(
-        `https://email-sender-server-gamma.vercel.app/clients`
+        `https://email-sender-server-rho.vercel.app/clients`
       );
       if (result.error) {
         console.error("Failed to fetch clients:", result.error);
@@ -91,7 +91,7 @@ const EmailCampaignForm = () => {
 
   const fetchInvestorLists = async () => {
     const { data, error } = await fetchData(
-      "https://email-sender-server-gamma.vercel.app/contact-lists"
+      "https://email-sender-server-rho.vercel.app/contact-lists"
     );
 
     // console.log(data.data);
@@ -139,7 +139,7 @@ const EmailCampaignForm = () => {
 
     try {
       await axios.post(
-        "https://email-sender-server-gamma.vercel.app/send-email",
+        "https://email-sender-server-rho.vercel.app/send-email",
         emailData,
         {
           headers: {

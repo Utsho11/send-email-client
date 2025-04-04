@@ -71,7 +71,7 @@ const SelectCampaign = () => {
 
     try {
       const response = await axios.post(
-        "https://email-sender-server-gamma.vercel.app/campaign",
+        "https://email-sender-server-rho.vercel.app/campaign",
         payload
       );
 

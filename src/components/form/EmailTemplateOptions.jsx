@@ -54,7 +54,7 @@ const EmailTemplateOptions = () => {
   const onFinish = async (values) => {
     try {
       const response = await axios.post(
-        "https://email-sender-server-gamma.vercel.app/campaign",
+        "https://email-sender-server-rho.vercel.app/campaign",
         values
       );
       console.log("Campaign created:", response.data);

@@ -42,8 +42,8 @@ const ManageClients = () => {
   const loadClients = async (email = "") => {
     setLoading(true);
     const url = email
-      ? `https://email-sender-server-gamma.vercel.app/clients?email=${email}`
-      : "https://email-sender-server-gamma.vercel.app/clients";
+      ? `https://email-sender-server-rho.vercel.app/clients?email=${email}`
+      : "https://email-sender-server-rho.vercel.app/clients";
     const { data, error } = await fetchData(url);
 
     if (error) {
@@ -57,7 +57,7 @@ const ManageClients = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://email-sender-server-gamma.vercel.app/clients/${id}`
+        `https://email-sender-server-rho.vercel.app/clients/${id}`
       );
       message.success("Client deleted successfully.");
       setClients(clients.filter((client) => client.id !== id));

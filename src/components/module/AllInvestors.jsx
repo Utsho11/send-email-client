@@ -41,7 +41,7 @@ const AllInvestors = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "https://email-sender-server-gamma.vercel.app/investors"
+        "https://email-sender-server-rho.vercel.app/investors"
       );
       setInvestors(response.data.data);
     } catch (error) {
@@ -61,7 +61,7 @@ const AllInvestors = () => {
     try {
       setLoading(true);
       await axios.delete(
-        `https://email-sender-server-gamma.vercel.app/investors/${id}`
+        `https://email-sender-server-rho.vercel.app/investors/${id}`
       );
       setInvestors(investors.filter((inv) => inv.id !== id));
       console.log("Investor deleted successfully");
@@ -83,7 +83,7 @@ const AllInvestors = () => {
       const values = await form.validateFields();
       setLoading(true);
       const response = await axios.put(
-        `https://email-sender-server-gamma.vercel.app/investors/${selectedInvestor.id}`,
+        `https://email-sender-server-rho.vercel.app/investors/${selectedInvestor.id}`,
         values
       );
 
