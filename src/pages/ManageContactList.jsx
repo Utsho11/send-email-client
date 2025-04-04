@@ -67,7 +67,7 @@ const ManageContactList = () => {
   const fetchInvestorLists = async () => {
     setLoading(true);
     const { data, error } = await fetchData(
-      "https://send-email-server-wdia.onrender.com/contact-lists"
+      "https://email-sender-server-gamma.vercel.app/contact-lists"
     );
 
     if (error) {
@@ -82,7 +82,7 @@ const ManageContactList = () => {
   const handleSave = async (values) => {
     try {
       const response = await axios.post(
-        "https://send-email-server-wdia.onrender.com/contact-lists",
+        "https://email-sender-server-gamma.vercel.app/contact-lists",
         {
           listName: values.listName, // Changed to match Form.Item name
         }
@@ -131,7 +131,7 @@ const ManageContactList = () => {
       if (result.isConfirmed) {
         try {
           const response = await axios.delete(
-            `https://send-email-server-wdia.onrender.com/contact-lists/${listId}`
+            `https://email-sender-server-gamma.vercel.app/contact-lists/${listId}`
           );
           if (response.data.success) {
             Swal.fire({

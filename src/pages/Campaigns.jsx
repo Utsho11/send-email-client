@@ -16,7 +16,7 @@ const Campaigns = () => {
     const loadCampaigns = async () => {
       setLoading(true);
       const result = await fetchData(
-        "https://send-email-server-wdia.onrender.com/campaign"
+        "https://email-sender-server-gamma.vercel.app/campaign"
       );
 
       // console.log(result);
@@ -49,7 +49,7 @@ const Campaigns = () => {
     try {
       const deletePromises = selectedRowKeys.map((id) =>
         axios
-          .delete(`https://send-email-server-wdia.onrender.com/campaign/${id}`)
+          .delete(`https://email-sender-server-gamma.vercel.app/campaign/${id}`)
           .then((response) => {
             // Check if the response indicates success
             // Assuming backend returns 204 (no content) or 200 with JSON

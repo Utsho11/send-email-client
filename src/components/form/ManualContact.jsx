@@ -45,7 +45,7 @@ const ManualContactImport = () => {
 
     try {
       const response = await axios.post(
-        "https://send-email-server-wdia.onrender.com/investors",
+        "https://email-sender-server-gamma.vercel.app/investors",
         updatedContacts
       );
       if (response.data.id) {

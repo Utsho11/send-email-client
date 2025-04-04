@@ -20,7 +20,7 @@ const MultiStepEntrepreneurForm = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "https://send-email-server-wdia.onrender.com/clients",
+        "https://email-sender-server-gamma.vercel.app/clients",
         data
       );
       if (response.data.id) {

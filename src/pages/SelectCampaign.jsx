@@ -71,7 +71,7 @@ const SelectCampaign = () => {
 
     try {
       const response = await axios.post(
-        "https://send-email-server-wdia.onrender.com/campaign",
+        "https://email-sender-server-gamma.vercel.app/campaign",
         payload
       );
 

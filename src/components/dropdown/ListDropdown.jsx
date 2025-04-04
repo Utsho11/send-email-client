@@ -68,7 +68,7 @@ const ListDropdown = () => {
   const handleSave = async (values) => {
     try {
       const response = await axios.post(
-        "https://send-email-server-wdia.onrender.com/contact-lists",
+        "https://email-sender-server-gamma.vercel.app/contact-lists",
         {
           listName: values.listName, // Changed to match Form.Item name
         }
